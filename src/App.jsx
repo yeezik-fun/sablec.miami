@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Dither from './Dither';
+import DepthText from './DepthText';
 
 // Parola segreta: scrivila sulla tastiera (da telefono: tieni premuta la scritta, poi scrivi).
 const SECRET = 'tramonto';
@@ -69,8 +70,28 @@ export default function App() {
         }}
         onPointerLeave={() => (pressRef.current = 0)}
         onContextMenu={e => e.preventDefault()}
+        aria-label="sablec.miami"
       >
-        sablec.miami
+        <DepthText
+          text="sablec.miami"
+          layers={48}
+          depth={2.2}
+          depthColor="#000000"
+          gradientDepth={false}
+          hoverPush={0.4}
+          float
+          tilt={8}
+          pointerTracking
+          smoothing={0.14}
+          perspective={900}
+          autoOrbit
+          orbitSpeed={0.35}
+          fontSize="clamp(3.5rem, 15cqi, 8.5rem)"
+          fontWeight={900}
+          shadow
+          outline={false}
+          intro
+        />
       </h1>
 
       <input
