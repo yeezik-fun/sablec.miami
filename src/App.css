@@ -1,0 +1,176 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  background: #160a2b;
+}
+
+.scene {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  min-height: 480px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+}
+
+/* Profondità del tramonto: cielo più scuro in alto, bagliore caldo all'orizzonte */
+.glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 45% at 50% 100%, rgba(255, 170, 100, 0.22), transparent 70%),
+    linear-gradient(180deg, rgba(12, 6, 26, 0.55) 0%, rgba(12, 6, 26, 0) 45%);
+}
+
+.title {
+  position: relative;
+  margin: 0;
+  padding: 0 16px;
+  text-align: center;
+  font-weight: 700;
+  font-size: clamp(44px, 8vw, 120px);
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+  text-transform: lowercase;
+  color: #fdf6ee;
+  background-image: linear-gradient(105deg, #fdf6ee 40%, #ffd3a0 46%, #ffffff 50%, #ffd3a0 54%, #fdf6ee 60%);
+  background-size: 300% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 6px 28px rgba(20, 6, 30, 0.45));
+  animation: shine 7s cubic-bezier(0.45, 0, 0.25, 1) 1s infinite;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+@keyframes shine {
+  0% { background-position: 100% 0; }
+  45%, 100% { background-position: 0% 0; }
+}
+
+.trap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.secret {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: rgba(14, 8, 28, 0.55);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  animation: reveal 1.2s ease both;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  max-height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 48px 40px 36px;
+  color: #fdf6ee;
+  animation: rise 1.4s 0.3s ease both;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-transform: lowercase;
+}
+
+.card p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgba(253, 246, 238, 0.9);
+}
+
+.card .date {
+  margin-top: 12px;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: rgba(253, 246, 238, 0.7);
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: rgba(253, 246, 238, 0.7);
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #ffffff;
+}
+
+@keyframes reveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 48px 8px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+  }
+}
